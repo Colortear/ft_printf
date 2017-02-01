@@ -1,0 +1,44 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: wdebs <marvin@42.fr>                       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2016/12/03 14:13:35 by wdebs             #+#    #+#              #
+#    Updated: 2017/01/09 23:41:03 by wdebs            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = libftprintf.a
+
+CC = gcc
+
+INC = libft/libft.a
+
+SRC = casts.c char_conv.c flagsnwidth.c ft_atoi.c ft_itoa.c ft_printf.c \
+	  int_conv.c int_to_str.c print_funcs.c \
+	  set_options.c string_conv.c p_conv.c \
+
+OBJ = casts.o char_conv.o flagsnwidth.o ft_atoi.o ft_itoa.o ft_printf.o \
+	  int_conv.o int_to_str.o print_funcs.o \
+	  set_options.o string_conv.o p_conv.o \
+
+CFLAGS = -Wall -Wextra -Werror -Wno-varargs -c
+
+all: $(NAME)
+
+$(NAME):
+	$(CC) $(CFLAGS) -I$(INC) $(SRC)
+	ar rc $(NAME) $(OBJ)
+	ranlib $(NAME)
+
+clean:
+	/bin/rm -rf $(OBJ)
+
+fclean: clean
+	/bin/rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: clean fclean re
